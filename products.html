@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produk Kami - Little Arwil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Oranienbaum&family=Unna:wght@400;700&family=Quattrocento+Sans:wght@400;700&family=Sorts+Mill+Goudy:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #F8F5F2;
+            --primary-color: #A8B3A0;
+            --secondary-color: #DCD3C5;
+            --accent-color: #E29A72;
+            --text-dark: #4D463F;
+            --text-light: #F8F5F2;
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            font-family: 'Quattrocento Sans', sans-serif;
+        }
+        
+        .font-heading {
+            font-family: 'Oranienbaum', serif;
+        }
+        
+        .font-heading-alt {
+            font-family: 'Unna', serif;
+        }
+        
+        .font-body-serif {
+            font-family: 'Sorts Mill Goudy', serif;
+        }
+        
+        .product-card {
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(77, 70, 63, 0.15);
+        }
+        
+        .filter-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn.active {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--accent-color);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .animate-fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .animate-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.8s ease;
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .badge-best-seller {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .badge-new {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .badge-limited {
+            background-color: var(--secondary-color);
+            color: var(--text-dark);
+        }
+        
+        .sort-dropdown {
+            transition: all 0.3s ease;
+        }
+        
+        .sort-dropdown:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(168, 179, 160, 0.2);
+        }
+        
+        .quality-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 12px;
+            padding: 8px 12px;
+            background: rgba(168, 179, 160, 0.1);
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        
+        .rating-stars {
+            color: #F59E0B;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-heading font-bold" style="color: var(--primary-color);">Little Arwil</h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="nav-link text-gray-700 hover:text-gray-900 font-medium">Home</a>
+                        <a href="products.html" class="nav-link active text-gray-900 font-medium">Produk</a>
+                        <a href="about.html" class="nav-link text-gray-700 hover:text-gray-900 font-medium">Tentang Kami</a>
+                        <a href="#contact" class="nav-link text-gray-700 hover:text-gray-900 font-medium">Kontak</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="p-2 text-gray-700 hover:text-accent-color transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 6M7 13l-1.5 6m0 0h9M17 13v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Product Header -->
+    <section class="pt-24 pb-12" style="background: linear-gradient(135deg, rgba(168, 179, 160, 0.1) 0%, rgba(220, 211, 197, 0.2) 100%);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="animate-fade-in">
+                <h2 class="text-4xl lg:text-5xl font-heading font-bold mb-6" style="color: var(--text-dark);">
+                    Produk <span style="color: var(--accent-color);">Little Arwil</span>
+                </h2>
+                <p class="text-xl text-gray-600 font-body-serif max-w-3xl mx-auto">
+                    Kemeja anak berkualitas dengan bahan cotton nyaman untuk usia 6-10 tahun. Semua produk di bawah 50k dengan kualitas terbaik.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter & Sort -->
+    <section class="py-8 bg-white/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row justify-between items-center gap-6">
+                <div class="flex flex-wrap gap-3">
+                    <button onclick="filterProducts('all')" class="filter-btn active px-6 py-3 rounded-full font-medium transition-all" style="background-color: var(--secondary-color); color: var(--text-dark);">
+                        Semua Produk
+                    </button>
+                    <button onclick="filterProducts('6-7')" class="filter-btn px-6 py-3 rounded-full font-medium transition-all" style="background-color: var(--secondary-color); color: var(--text-dark);">
+                        Usia 6-7 Tahun
+                    </button>
+                    <button onclick="filterProducts('8-9')" class="filter-btn px-6 py-3 rounded-full font-medium transition-all" style="background-color: var(--secondary-color); color: var(--text-dark);">
+                        Usia 8-9 Tahun
+                    </button>
+                    <button onclick="filterProducts('10')" class="filter-btn px-6 py-3 rounded-full font-medium transition-all" style="background-color: var(--secondary-color); color: var(--text-dark);">
+                        Usia 10 Tahun
+                    </button>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <label class="text-sm font-medium text-gray-700">Urutkan:</label>
+                    <select id="sort-select" onchange="sortProducts()" class="sort-dropdown px-4 py-2 border border-gray-300 rounded-lg focus:outline-none">
+                        <option value="featured">Produk Unggulan</option>
+                        <option value="price-low">Harga Terendah</option>
+                        <option value="price-high">Harga Tertinggi</option>
+                        <option value="name">Nama Produk</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Grid -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                
+                <!-- Product 1 -->
+                <div class="product-card rounded-xl p-6 shadow-lg animate-fade-in" data-category="6-7" data-price="45000" data-name="Kemeja Cotton Comfort">
+                    <div class="relative overflow-hidden rounded-lg mb-4">
+                        <img src="https://kimi-web-img.moonshot.cn/img/img.freepik.com/daf3599bb8dc1fa72e783669e79dfac202963a44.jpg" alt="Kemeja Cotton Comfort" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-110">
+                        <div class="product-badge badge-best-seller">Best Seller</div>
+                    </div>
+                    <h3 class="text-lg font-heading-alt font-bold mb-2">Kemeja Cotton Comfort</h3>
+                    <p class="text-gray-600 text-sm mb-3">Bahan cotton 100%, nyaman dipakai seharian untuk anak usia 6-7 tahun</p>
+                    <div class="quality-indicator">
+                        <div class="rating-stars">★★★★★</div>
+                        <span class="text-gray-600">(4.8/5)</span>
+                    </div>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-2xl font-bold" style="color: var(--accent-color);">Rp 45.000</span>
+                        <button onclick="addToCart('Kemeja Cotton Comfort')" class="px-4 py-2 text-sm font-medium text-white rounded-lg hover:shadow-lg transition-all" style="background-color: var(--primary-color);">
+                            Tambah ke Keranjang
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card rounded-xl p-6 shadow-lg animate-fade-in" data-category="6-7" data-price="42000" data-name="Kemeja Daily Wear">
+                    <div class="relative overflow-hidden rounded-lg mb-4">
+                        <img src="https://kimi-web-img.moonshot.cn/img/ae01.alicdn.com/3ccd7799acb2ae0eadf5c343319ddd80b5c0d624.jpg" alt="Kemeja Daily Wear" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-110">
+                    </div>
+                    <h3 class="text-lg font-heading-alt font-bold mb-2">Kemeja Daily Wear</h3>
+                    <p class="text-gray-600 text-sm mb-3">Jahitan rapi, tahan lama untuk aktifitas harian anak usia 6-7 tahun</p>
+                    <div class="quality-indicator">
+                        <div class="rating-stars">★★★★☆</div>
+                        <span class="text-gray-600">(4.6/5)</span>
+                    </div>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-2xl font-bold" style="color: var(--accent-color);">Rp 42.000</span>
+                        <button onclick="addToCart('Kemeja Daily Wear')" class="px-4 py-2 text-sm font-medium text-white rounded-lg hover:shadow-lg transition-all" style="background-color: var(--primary-color);">
+                            Tambah ke Keranjang
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card rounded-xl p-6 shadow-lg animate-fade-in" data-category="8-9" data-price="48000" data-name="Kemeja Premium Soft">
+                    <div class="relative overflow-hidden rounded-lg mb-4">
+                        <img src="https://kimi-web-img.moonshot.cn/img/www.evegroupbd.com/5c1c2dede96793f0af5020473625cf9cae0332c7.jpg" alt="Kemeja Premium Soft" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-110">
+                        <div class="product-badge badge-new">New</div>
+                    </div>
+                    <h3 class="text-lg font-heading-alt font-bold mb-2">Kemeja Premium Soft</h3>
+                    <p class="text-gray-600 text-sm mb-3">Bahan extra soft, tidak menyebabkan iritasi untuk anak usia 8-9 tahun</p>
+                    <div class="quality-indicator">
+                        <div class="rating-stars">★★★★★</div>
+                        <span class="text-gray-600">(4.9/5)</span>
+                    </div>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-2xl font-bold" style="color: var(--accent-color);">Rp 48.000</span>
+                        <button onclick="addToCart('Kemeja Premium Soft')" class="px-4 py-2 text-sm font-medium text-white rounded-lg hover:shadow-lg transition-all" style="background-color: var(--primary-color);">
+                            Tambah ke Keranjang
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card rounded-xl p-6 shadow-lg animate-fade-in" data-category="8-9" data-price="46000" data-name="Kemeja Active Day">
+                    <div class="relative overflow-hidden rounded-lg mb-4">
+                        <img src="https://kimi-web-img.moonshot.cn/img/5.imimg.com/ce1197ac763a40af60c6381232d4cd5c14f33b80.jpg" alt="Kemeja Active Day" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-110">
+                    </div>
+                    <h3 class="text-lg font-heading-alt font-bold mb-2">Kemeja Active Day</h3>
+                    <p class="text-gray-600 text-sm mb-3">Desain sporty, cocok untuk anak aktif usia 8-9 tahun</p>
+                    <div class="quality-indicator">
+                        <div class="rating-stars">★★★★☆</div>
+                        <span class="text-gray-600">(4.7/5)</span>
+                    </div>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-2xl font-bold" style="color: var(--accent-color);">Rp 46.000</span>
+                        <button onclick="addToCart('Kemeja Active Day')" class="px-4 py-2 text-sm font-medium text-white rounded-lg hover:shadow-lg transition-all" style="background-color: var(--primary-color);">
+                            Tambah ke Keranjang
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card rounded-xl p-6 shadow-lg animate-fade-in" data-category="10" data-price="44000" data-name="Kemeja Classic Style">
+                    <div class="relative overflow-hidden rounded-lg mb-4">
+                        <img src="https://kimi-web-img.moonshot.cn/img/img.freepik.com/d6be4e04bc8ff6517471664d87d61ce3a12f9a15.jpg" alt="Kemeja Classic Style" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-110">
+                    </div>
+                    <h3 class="text-lg font-heading-alt font-bold mb-2">Kemeja Classic Style</h3>
+                    <p class="text-gray-600 text-sm mb-3">Gaya timeless, mudah dipadukan untuk anak usia 10 tahun</p>
+                    <div class="quality-indicator">
+                        <div class="rating-stars">★★★★☆</div>
+                        <span class="text-gray-600">(4.5/5)</span>
+                    </div>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-2xl font-bold" style="color: var(--accent-color);">Rp 44.000</span>
+                        <button onclick="addToCart('Kemeja Classic Style')" class="px-4 py-2 text-sm font-medium text-white rounded-lg hover:shadow-lg transition-all" style="background-color: var(--primary-color);">
+                            Tambah ke Keranjang
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card rounded-xl p-6 shadow-lg animate-fade-in" data-category="10" data-price="47000" data-name="Kemeja Weekend Fun">
+                    <div class="relative overflow-hidden rounded-lg mb-4">
+                        <img src="https://kimi-web-img.moonshot.cn/img/fotone.ae/5d9879b773f1f2d015bf4f46dcba43b9aeaf6826.jpg" alt="Kemeja Weekend Fun" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-110">
+                        <div class="product-badge badge-limited">Limited</div>
+                    </div>
+                    <h3 class="text-lg font-heading-alt font-bold mb-2">Kemeja Weekend Fun</h3>
+                    <p class="text-gray-600 text-sm mb-3">Warna ceria, motif playful untuk anak usia 10 tahun</p>
+                    <div class="quality-indicator">
+                        <div class="rating-stars">★★★★★</div>
+                        <span class="text-gray-600">(4.8/5)</span>
+                    </div>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-2xl font-bold" style="color: var(--accent-color);">Rp 47.000</span>
+                        <button onclick="addToCart('Kemeja Weekend Fun')" class="px-4 py-2 text-sm font-medium text-white rounded-lg hover:shadow-lg transition-all" style="background-color: var(--primary-color);">
+                            Tambah ke Keranjang
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 7 -->
+                <div class="product-card rounded-xl p-6 shadow-lg animate-fade-in" data-category="6-7" data-price="43000" data-name="Kemeja School Day">
+                    <div class="relative overflow-hidden rounded-lg mb-4">
+                        <img src="https://kimi-web-img.moonshot.cn/img/ae01.alicdn.com/76e31502e956510c7508b310a52876519ff8475e.jpg" alt="Kemeja School Day" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-110">
+                        <div class="product-badge badge-new">New</div>
+                    </div>
+                    <h3 class="text-lg font-heading-alt font-bold mb-2">Kemeja School Day</h3>
+                    <p class="text-gray-600 text-sm mb-3">Desain formal casual, cocok untuk sekolah dan acara anak usia 6-7 tahun</p>
+                    <div class="quality-indicator">
+                        <div class="rating-stars">★★★★☆</div>
+                        <span class="text-gray-600">(4.6/5)</span>
+                    </div>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-2xl font-bold" style="color: var(--accent-color);">Rp 43.000</span>
+                        <button onclick="addToCart('Kemeja School Day')" class="px-4 py-2 text-sm font-medium text-white rounded-lg hover:shadow-lg transition-all" style="background-color: var(--primary-color);">
+                            Tambah ke Keranjang
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 8 -->
+                <div class="product-card rounded-xl p-6 shadow-lg animate-fade-in" data-category="8-9" data-price="49000" data-name="Kemeja Adventure Time">
+                    <div class="relative overflow-hidden rounded-lg mb-4">
+                        <img src="https://kimi-web-img.moonshot.cn/img/c8.alamy.com/cfa4440db16d95fed1e1b920912c627eaf37d6b3.jpg" alt="Kemeja Adventure Time" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-110">
+                        <div class="product-badge badge-best-seller">Best Seller</div>
+                    </div>
+                    <h3 class="text-lg font-heading-alt font-bold mb-2">Kemeja Adventure Time</h3>
+                    <p class="text-gray-600 text-sm mb-3">Motif petualangan, bahan tahan lama untuk anak aktif usia 8-9 tahun</p>
+                    <div class="quality-indicator">
+                        <div class="rating-stars">★★★★★</div>
+                        <span class="text-gray-600">(4.9/5)</span>
+                    </div>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-2xl font-bold" style="color: var(--accent-color);">Rp 49.000</span>
+                        <button onclick="addToCart('Kemeja Adventure Time')" class="px-4 py-2 text-sm font-medium text-white rounded-lg hover:shadow-lg transition-all" style="background-color: var(--primary-color);">
+                            Tambah ke Keranjang
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 9 -->
+                <div class="product-card rounded-xl p-6 shadow-lg animate-fade-in" data-category="10" data-price="45000" data-name="Kemeja Smart Casual">
+                    <div class="relative overflow-hidden rounded-lg mb-4">
+                        <img src="https://kimi-web-img.moonshot.cn/img/img.freepik.com/daf3599bb8dc1fa72e783669e79dfac202963a44.jpg" alt="Kemeja Smart Casual" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-110">
+                    </div>
+                    <h3 class="text-lg font-heading-alt font-bold mb-2">Kemeja Smart Casual</h3>
+                    <p class="text-gray-600 text-sm mb-3">Style modern, cocok untuk berbagai acara anak usia 10 tahun</p>
+                    <div class="quality-indicator">
+                        <div class="rating-stars">★★★★☆</div>
+                        <span class="text-gray-600">(4.7/5)</span>
+                    </div>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-2xl font-bold" style="color: var(--accent-color);">Rp 45.000</span>
+                        <button onclick="addToCart('Kemeja Smart Casual')" class="px-4 py-2 text-sm font-medium text-white rounded-lg hover:shadow-lg transition-all" style="background-color: var(--primary-color);">
+                            Tambah ke Keranjang
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 10 -->
+                <div class="product-card rounded-xl p-6 shadow-lg animate-fade-in" data-category="6-7" data-price="41000" data-name="Kemeja Basic Essential">
+                    <div class="relative overflow-hidden rounded-lg mb-4">
+                        <img src="https://kimi-web-img.moonshot.cn/img/ae01.alicdn.com/3ccd7799acb2ae0eadf5c343319ddd80b5c0d624.jpg" alt="Kemeja Basic Essential" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-110">
+                        <div class="product-badge badge-new">New</div>
+                    </div>
+                    <h3 class="text-lg font-heading-alt font-bold mb-2">Kemeja Basic Essential</h3>
+                    <p class="text-gray-600 text-sm mb-3">Warna basic, must have untuk koleksi anak usia 6-7 tahun</p>
+                    <div class="quality-indicator">
+                        <div class="rating-stars">★★★★☆</div>
+                        <span class="text-gray-600">(4.5/5)</span>
+                    </div>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-2xl font-bold" style="color: var(--accent-color);">Rp 41.000</span>
+                        <button onclick="addToCart('Kemeja Basic Essential')" class="px-4 py-2 text-sm font-medium text-white rounded-lg hover:shadow-lg transition-all" style="background-color: var(--primary-color);">
+                            Tambah ke Keranjang
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 11 -->
+                <div class="product-card rounded-xl p-6 shadow-lg animate-fade-in" data-category="8-9" data-price="46000" data-name="Kemeja Summer Breeze">
+                    <div class="relative overflow-hidden rounded-lg mb-4">
+                        <img src="https://kimi-web-img.moonshot.cn/img/www.evegroupbd.com/5c1c2dede96793f0af5020473625cf9cae0332c7.jpg" alt="Kemeja Summer Breeze" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-110">
+                    </div>
+                    <h3 class="text-lg font-heading-alt font-bold mb-2">Kemeja Summer Breeze</h3>
+                    <p class="text-gray-600 text-sm mb-3">Bahan ringan dan adem, perfect untuk cuaca panas anak usia 8-9 tahun</p>
+                    <div class="quality-indicator">
+                        <div class="rating-stars">★★★★★</div>
+                        <span class="text-gray-600">(4.8/5)</span>
+                    </div>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-2xl font-bold" style="color: var(--accent-color);">Rp 46.000</span>
+                        <button onclick="addToCart('Kemeja Summer Breeze')" class="px-4 py-2 text-sm font-medium text-white rounded-lg hover:shadow-lg transition-all" style="background-color: var(--primary-color);">
+                            Tambah ke Keranjang
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 12 -->
+                <div class="product-card rounded-xl p-6 shadow-lg animate-fade-in" data-category="10" data-price="48000" data-name="Kemeja Urban Style">
+                    <div class="relative overflow-hidden rounded-lg mb-4">
+                        <img src="https://kimi-web-img.moonshot.cn/img/5.imimg.com/ce1197ac763a40af60c6381232d4cd5c14f33b80.jpg" alt="Kemeja Urban Style" class="w-full h-48 object-cover transition-transform duration-300 hover:scale-110">
+                        <div class="product-badge badge-limited">Limited</div>
+                    </div>
+                    <h3 class="text-lg font-heading-alt font-bold mb-2">Kemeja Urban Style</h3>
+                    <p class="text-gray-600 text-sm mb-3">Desain modern urban, cocok untuk anak usia 10 tahun yang stylish</p>
+                    <div class="quality-indicator">
+                        <div class="rating-stars">★★★★☆</div>
+                        <span class="text-gray-600">(4.6/5)</span>
+                    </div>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-2xl font-bold" style="color: var(--accent-color);">Rp 48.000</span>
+                        <button onclick="addToCart('Kemeja Urban Style')" class="px-4 py-2 text-sm font-medium text-white rounded-lg hover:shadow-lg transition-all" style="background-color: var(--primary-color);">
+                            Tambah ke Keranjang
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Load More Button -->
+            <div class="text-center mt-16">
+                <button onclick="loadMoreProducts()" class="inline-flex items-center px-8 py-3 text-lg font-medium text-white rounded-lg hover:shadow-lg transition-all" style="background-color: var(--accent-color);">
+                    Lihat Lebih Banyak Produk
+                    <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quality Promise -->
+    <section class="py-20 bg-white/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="text-4xl font-heading font-bold mb-6" style="color: var(--text-dark);">Garansi Kualitas</h2>
+                <p class="text-xl text-gray-600 font-body-serif">
+                    Kami berdiri di belakang setiap produk yang kami buat
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center p-8 rounded-xl bg-white/80 backdrop-blur-sm animate-fade-in">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center" style="background-color: rgba(168, 179, 160, 0.2);">
+                        <svg class="w-8 h-8" style="color: var(--primary-color);" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-heading-alt font-bold mb-4">Garansi Kualitas</h3>
+                    <p class="text-gray-600 font-body-serif">Jika ada cacat produksi, kami ganti dengan yang baru tanpa biaya tambahan.</p>
+                </div>
+                
+                <div class="text-center p-8 rounded-xl bg-white/80 backdrop-blur-sm animate-fade-in">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center" style="background-color: rgba(226, 154, 114, 0.2);">
+                        <svg class="w-8 h-8" style="color: var(--accent-color);" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-heading-alt font-bold mb-4">Pengembalian Mudah</h3>
+                    <p class="text-gray-600 font-body-serif">Bisa dikembalikan dalam 7 hari jika ukuran tidak sesuai atau ada masalah.</p>
+                </div>
+                
+                <div class="text-center p-8 rounded-xl bg-white/80 backdrop-blur-sm animate-fade-in">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center" style="background-color: rgba(220, 211, 197, 0.3);">
+                        <svg class="w-8 h-8" style="color: var(--text-dark);" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-heading-alt font-bold mb-4">Dukungan Pelanggan</h3>
+                    <p class="text-gray-600 font-body-serif">Tim kami siap membantu melalui WhatsApp untuk pertanyaan seputar produk.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16" style="background-color: var(--primary-color); color: var(--text-light);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h3 class="text-3xl font-heading font-bold mb-4">Little Arwil</h3>
+                <p class="text-xl font-body-serif mb-8 opacity-90">Baju Anak Nyaman, Awet, dan Ekonomis untuk Kebutuhan Harian</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                    <div>
+                        <h4 class="text-lg font-heading-alt font-bold mb-4">Misi Kami</h4>
+                        <p class="opacity-90 font-body-serif">Menyediakan baju anak yang nyaman, awet, dan ekonomis untuk kebutuhan harian anak usia 6-10 tahun.</p>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-heading-alt font-bold mb-4">Nilai Kami</h4>
+                        <ul class="space-y-2 opacity-90 font-body-serif">
+                            <li>• Konsistensi kualitas</li>
+                            <li>• Kepedulian pada kenyamanan anak</li>
+                            <li>• Harga terjangkau tanpa gimmick</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-heading-alt font-bold mb-4">Kontak Kami</h4>
+                        <div class="space-y-2 opacity-90 font-body-serif">
+                            <p>WhatsApp: 0812-3456-7890</p>
+                            <p>Shopee: Little Arwil Official</p>
+                            <p>Email: hello@littlearwil.com</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="border-t border-white/20 pt-8">
+                    <p class="opacity-75 font-body-serif">&copy; 2025 Little Arwil. Semua hak dilindungi. Dibuat dengan ❤️ untuk kenyamanan anak-anak Indonesia.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeAnimations();
+        });
+
+        // Scroll animations
+        function initializeAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.animate-fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Filter products
+        function filterProducts(category) {
+            const products = document.querySelectorAll('.product-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // Update active button
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Filter products
+            products.forEach(product => {
+                if (category === 'all' || product.dataset.category === category) {
+                    product.style.display = 'block';
+                    anime({
+                        targets: product,
+                        opacity: [0, 1],
+                        scale: [0.8, 1],
+                        duration: 500,
+                        easing: 'easeOutBack',
+                        delay: Math.random() * 200
+                    });
+                } else {
+                    anime({
+                        targets: product,
+                        opacity: [1, 0],
+                        scale: [1, 0.8],
+                        duration: 300,
+                        easing: 'easeInBack',
+                        complete: () => {
+                            product.style.display = 'none';
+                        }
+                    });
+                }
+            });
+        }
+
+        // Sort products
+        function sortProducts() {
+            const sortValue = document.getElementById('sort-select').value;
+            const grid = document.getElementById('product-grid');
+            const products = Array.from(grid.querySelectorAll('.product-card'));
+            
+            products.sort((a, b) => {
+                switch(sortValue) {
+                    case 'price-low':
+                        return parseInt(a.dataset.price) - parseInt(b.dataset.price);
+                    case 'price-high':
+                        return parseInt(b.dataset.price) - parseInt(a.dataset.price);
+                    case 'name':
+                        return a.dataset.name.localeCompare(b.dataset.name);
+                    default:
+                        return 0;
+                }
+            });
+            
+            // Re-append sorted products
+            products.forEach(product => {
+                grid.appendChild(product);
+            });
+            
+            // Animate reorder
+            anime({
+                targets: '.product-card',
+                translateY: [30, 0],
+                opacity: [0.7, 1],
+                duration: 600,
+                easing: 'easeOutQuart',
+                delay: anime.stagger(50)
+            });
+        }
+
+        // Add to cart
+        function addToCart(productName) {
+            // Create success notification
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-20 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+            notification.innerHTML = `
+                <div class="flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    ${productName} ditambahkan ke keranjang!
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Animate notification
+            anime({
+                targets: notification,
+                translateX: [300, 0],
+                opacity: [0, 1],
+                duration: 500,
+                easing: 'easeOutBack'
+            });
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                anime({
+                    targets: notification,
+                    translateX: [0, 300],
+                    opacity: [1, 0],
+                    duration: 400,
+                    easing: 'easeInBack',
+                    complete: () => {
+                        document.body.removeChild(notification);
+                    }
+                });
+            }, 3000);
+        }
+
+        // Load more products (placeholder)
+        function loadMoreProducts() {
+            const button = event.target;
+            button.innerHTML = `
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Memuat...
+            `;
+            
+            setTimeout(() => {
+                button.innerHTML = `
+                    Lihat Lebih Banyak Produk
+                    <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                `;
+                
+                // Show success message
+                const message = document.createElement('div');
+                message.className = 'text-center mt-8 p-4 bg-blue-100 text-blue-800 rounded-lg';
+                message.textContent = 'Semua produk telah ditampilkan. Lihat lebih banyak di Shopee Little Arwil Official!';
+                document.getElementById('product-grid').parentNode.insertBefore(message, button.parentNode);
+                
+                button.style.display = 'none';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

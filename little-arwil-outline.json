@@ -1,0 +1,187 @@
+{
+  "pages": [
+    {
+      "number": 1,
+      "type": "landing",
+      "title": "Little Arwil - Baju Anak Nyaman & Awet",
+      "filename": "index.html",
+      "description": "Homepage showcasing brand values, hero section with lifestyle imagery, product highlights, and trust signals",
+      "sections": [
+        {
+          "name": "Navigation",
+          "type": "navigation",
+          "content": "Logo, menu items (Home, Products, About, Contact), and shopping cart icon"
+        },
+        {
+          "name": "Hero Section",
+          "type": "hero",
+          "content": "Large lifestyle image of child playing comfortably, headline 'Baju Anak Dipakai Setiap Hari. Pastikan Pilih Yang Benar.', subheading about comfort and durability, CTA button to products"
+        },
+        {
+          "name": "Trust Signals",
+          "type": "feature",
+          "content": "Three key benefits: Bahan Adem & Nyaman, Jahitan Rapi & Awet, Harga Terjangkau 50k. Each with icon and short description"
+        },
+        {
+          "name": "Product Showcase",
+          "type": "product",
+          "content": "Featured children's shirts with hover effects showing fabric texture, comfort details, and pricing. Grid layout with 6 products"
+        },
+        {
+          "name": "Comfort Demo",
+          "type": "interactive",
+          "content": "Interactive section showing fabric quality - click to see breathability, softness, and durability features with animated demonstrations"
+        },
+        {
+          "name": "Testimonials",
+          "type": "content",
+          "content": "Reviews from mothers with photos, emphasizing comfort, quality, and repeat purchases. Carousel format"
+        },
+        {
+          "name": "Size Guide",
+          "type": "interactive",
+          "content": "Interactive size chart for ages 6-10 with height/weight recommendations and fit guarantee"
+        },
+        {
+          "name": "Footer",
+          "type": "footer",
+          "content": "Copyright, social links, contact info, and brand mission statement"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "type": "product",
+      "title": "Produk Kami - Little Arwil",
+      "filename": "products.html",
+      "description": "Complete product catalog with filtering, detailed product cards, and purchasing options",
+      "sections": [
+        {
+          "name": "Navigation",
+          "type": "navigation",
+          "content": "Same as homepage with active state on Products"
+        },
+        {
+          "name": "Product Header",
+          "type": "hero",
+          "content": "Short hero with product-focused image and tagline about everyday comfort"
+        },
+        {
+          "name": "Filter & Sort",
+          "type": "interactive",
+          "content": "Filter by size (6-7, 8-9, 10 years), sort by price and popularity. Clean dropdown interface"
+        },
+        {
+          "name": "Product Grid",
+          "type": "product",
+          "content": "12+ product cards with high-quality shirt images, price under 50k, comfort icons, and quick view functionality"
+        },
+        {
+          "name": "Quality Promise",
+          "type": "feature",
+          "content": "Section reinforcing quality guarantee, return policy, and manufacturing standards"
+        },
+        {
+          "name": "Footer",
+          "type": "footer",
+          "content": "Same as homepage"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "type": "about",
+      "title": "Tentang Kami - Little Arwil",
+      "filename": "about.html",
+      "description": "Brand story, values, manufacturing process, and mission to provide quality affordable children's clothing",
+      "sections": [
+        {
+          "name": "Navigation",
+          "type": "navigation",
+          "content": "Same as homepage with active state on About"
+        },
+        {
+          "name": "Brand Story Hero",
+          "type": "hero",
+          "content": "Image showing caring mother and child with brand story headline about understanding parental needs"
+        },
+        {
+          "name": "Our Mission",
+          "type": "content",
+          "content": "Detailed explanation of mission to provide comfortable, durable, and economical children's clothing for daily needs"
+        },
+        {
+          "name": "Core Values",
+          "type": "feature",
+          "content": "Three columns showcasing: Konsistensi Kualitas, Kepedulian pada Kenyamanan Anak, Harga Terjangkau Tanpa Gimmick"
+        },
+        {
+          "name": "Manufacturing Process",
+          "type": "content",
+          "content": "Behind-the-scenes look at fabric selection, quality control, and production standards with authentic workshop images"
+        },
+        {
+          "name": "Problem We Solve",
+          "type": "content",
+          "content": "Address common pain points: hot fabric, rough material, quick damage, irritation - with before/after comparisons"
+        },
+        {
+          "name": "Footer",
+          "type": "footer",
+          "content": "Same as homepage"
+        }
+      ]
+    }
+  ],
+  "interactive_components": [
+    {
+      "name": "Comfort Demo",
+      "type": "clickable",
+      "description": "Interactive fabric quality demonstration with breathability, softness, and durability animations"
+    },
+    {
+      "name": "Size Guide",
+      "type": "calculator",
+      "description": "Interactive size recommendation tool based on age, height, and weight inputs"
+    },
+    {
+      "name": "Product Filter",
+      "type": "filter",
+      "description": "Dynamic filtering system for products by size, with real-time results"
+    },
+    {
+      "name": "Testimonial Carousel",
+      "type": "carousel",
+      "description": "Auto-rotating customer testimonials with manual navigation controls"
+    }
+  ],
+  "visual_effects": [
+    {
+      "library": "Anime.js",
+      "effects": [
+        "Fade-in animations for sections on scroll",
+        "Hover effects on product cards with scale and shadow",
+        "Smooth transitions for interactive elements"
+      ]
+    },
+    {
+      "library": "Splide",
+      "effects": [
+        "Testimonial carousel with smooth transitions",
+        "Product image slider on hover"
+      ]
+    },
+    {
+      "library": "ECharts.js",
+      "effects": [
+        "Comfort rating visualization in product details"
+      ]
+    },
+    {
+      "library": "p5.js",
+      "effects": [
+        "Subtle particle background effect representing fabric softness"
+      ]
+    }
+  ]
+}
